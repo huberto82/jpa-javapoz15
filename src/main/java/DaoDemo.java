@@ -13,7 +13,6 @@ public class DaoDemo {
     public static void main(String[] args) {
 
         DogDao dogDao = new DogDaoJpa();
-        /*
         //dogDao.save(new Dog("Czarny", LocalDate.of(2005,10,1)));
         Dog dog = dogDao.findById(2L);
         System.out.println("Pies o id 2: " + dog);
@@ -37,8 +36,7 @@ public class DaoDemo {
         for(Dog d: lista){
             System.out.println(d);
         }
-        */
-
+        System.out.println("Aktualizacja daty w polu created");
         dogDao.updateCreated(Timestamp.valueOf(LocalDateTime.now()));
         for(Dog d: dogDao.findAll()) {
             System.out.println(d);

@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@NamedQuery(name = "updateCreated", query = "UPDATE Dog d SET d.created = :date")
 @NamedQuery(name = "findAll", query = "FROM Dog")
 @NamedQuery(name = "findByName", query = "SELECT d FROM Dog d WHERE d.name = :name")
-@NamedQuery(name = "updateCreated", query = "UPDATE Dog d SET d.created = :date WHERE d.created is NULL")
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,21 +69,23 @@ public class Dog {
 
     @Override
     public String toString() {
-        return "entity.Dog{" +
+        return "Dog{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", birthDate=" + birthDate +
+                ", created=" + created +
+                ", address=" + address +
                 '}';
     }
 
     @PrePersist
-    private void setCreated(){
+    private void initCreated(){
         created = Timestamp.valueOf(LocalDateTime.now());
     }
 
     @PreRemove
     private void byeBye(){
-        System.out.println("Żegnaj piesku + " + name);
+        System.out.println("Żegnaj piesku: " + name);
     }
 }
 

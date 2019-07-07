@@ -21,10 +21,10 @@ public class DogDaoJpa implements DogDao{
     }
 
     @Override
-    public void updatedCreated(Timestamp date) {
+    public void updateCreated(Timestamp date) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.createNamedQuery("updateCreated");
+        em.createNamedQuery("updateCreated").setParameter("date",date).executeUpdate();
         em.getTransaction().commit();
     }
 

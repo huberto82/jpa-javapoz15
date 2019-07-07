@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface DogDao extends Dao<Dog> {
     List<Dog> findByBirhDate(LocalDate date);
-    void updatedCreated(Timestamp date);
+    void updateCreated(Timestamp date);
 }

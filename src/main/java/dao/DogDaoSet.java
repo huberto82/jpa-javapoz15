@@ -24,7 +24,7 @@ public class DogDaoSet implements DogDao{
     }
 
     @Override
-    public void updatedCreated(Timestamp date) {
+    public void updateCreated(Timestamp date) {
 
     }
 

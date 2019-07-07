@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@NamedQuery(name = "updateCreated", query = "UPDATE Dog d SET d.created = :date")
+@NamedQuery(name = "updateCreated", query = "UPDATE Dog d SET d.created = :date WHERE d.created IS NULL")
 @NamedQuery(name = "findAll", query = "FROM Dog")
 @NamedQuery(name = "findByName", query = "SELECT d FROM Dog d WHERE d.name = :name")
 public class Dog {

@@ -4,7 +4,9 @@ import entity.Dog;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class DogDaoJpa implements DogDao{
@@ -14,14 +16,22 @@ public class DogDaoJpa implements DogDao{
     public List<Dog> findByBirhDate(LocalDate date) {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("SELECT d FROM Dog d WHERE birthDate = :date")
-                .setParameter("date", date)
+               .setParameter("date", date)
                 .getResultList();
+    }
+
+    @Override
+    public void updatedCreated(Timestamp date) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.createNamedQuery("updateCreated");
+        em.getTransaction().commit();
     }
 
     @Override
     public List<Dog> findAll() {
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("SELECT d FROM  Dog d").getResultList();
+        return em.createNamedQuery("findAll", Dog.class).getResultList();
     }
 
     @Override

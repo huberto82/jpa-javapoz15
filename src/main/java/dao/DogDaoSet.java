@@ -2,6 +2,7 @@ package dao;
 
 import entity.Dog;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,11 @@ public class DogDaoSet implements DogDao{
     @Override
     public List<Dog> findByBirhDate(LocalDate date) {
         return null;
+    }
+
+    @Override
+    public void updatedCreated(Timestamp date) {
+
     }
 
     @Override

@@ -1,11 +1,14 @@
 package entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@NamedQuery(name ="findAll", query = "FROM Dog")
+@NamedQuery(name = "findAll", query = "FROM Dog")
 @NamedQuery(name = "findByName", query = "SELECT d FROM Dog d WHERE d.name = :name")
+@NamedQuery(name = "updateCreated", query = "UPDATE Dog d SET d.created = :date WHERE d.created is NULL")
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +18,24 @@ public class Dog {
 
     private LocalDate birthDate;
 
+    private Timestamp created;
+
+    @Embedded
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public Dog() {
+    }
+
+    public Timestamp getCreated() {
+        return created;
     }
 
     public Dog(String name, LocalDate birthDate) {
@@ -55,4 +75,19 @@ public class Dog {
                 ", birthDate=" + birthDate +
                 '}';
     }
+
+    @PrePersist
+    private void setCreated(){
+        created = Timestamp.valueOf(LocalDateTime.now());
+    }
+
+    @PreRemove
+    private void byeBye(){
+        System.out.println("Żegnaj piesku + " + name);
+    }
 }
+
+//TODO napisać NamedQuery zwracające liczbę psów w tabeli
+//TODO napisać NamedQuery zwracające psy posortowane rosnąco wg datyurodzin i imienia
+//TODO napisać NamedQuery zwracające najstarszego psa
+//TODO napisać metodę zwracające tabelę wszystkich psów: imię i wiek

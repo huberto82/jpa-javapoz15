@@ -1,12 +1,11 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@NamedQuery(name ="findAll", query = "FROM Dog")
+@NamedQuery(name = "findByName", query = "SELECT d FROM Dog d WHERE d.name = :name")
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

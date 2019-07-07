@@ -12,7 +12,10 @@ public class DogDaoJpa implements DogDao{
 
     @Override
     public List<Dog> findByBirhDate(LocalDate date) {
-        return null;
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("SELECT d FROM Dog d WHERE birthDate = :date")
+                .setParameter("date", date)
+                .getResultList();
     }
 
     @Override

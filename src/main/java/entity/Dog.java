@@ -90,6 +90,6 @@ public class Dog {
 }
 
 //TODO napisać NamedQuery zwracające liczbę psów w tabeli
-//TODO napisać NamedQuery zwracające psy posortowane rosnąco wg datyurodzin i imienia
+//TODO napisać NamedQuery zwracające psy posortowane rosnąco wg daty urodzin i imienia
 //TODO napisać NamedQuery zwracające najstarszego psa
 //TODO napisać metodę zwracające tabelę wszystkich psów: imię i wiek
